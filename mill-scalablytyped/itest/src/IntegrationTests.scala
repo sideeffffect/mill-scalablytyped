@@ -42,6 +42,7 @@ object IntegrationTests extends TestSuite {
       val tester = buildTester("std-libs")
       npmCi(tester)
       assert(runNode(tester, "module") == "3")
+    }
     test("package-lock") {
       val tester = buildTester("package-lock")
       def installedLodashTypes() = ujson
