@@ -38,11 +38,6 @@ object IntegrationTests extends TestSuite {
       npmCi(tester)
       assert(runNode(tester, "module") == "[ [ 1, 3 ], [ 2, 4 ] ]")
     }
-    test("std-libs") {
-      val tester = buildTester("std-libs")
-      npmCi(tester)
-      assert(runNode(tester, "module") == "3")
-    }
     test("package-lock") {
       val tester = buildTester("package-lock")
       def installedLodashTypes() = ujson
@@ -63,6 +58,11 @@ object IntegrationTests extends TestSuite {
       )
       assert(tester.eval("module.compile").isSuccess)
       assert(installedLodashTypes() == "4.14.182")
+    }
+    test("std-libs") {
+      val tester = buildTester("std-libs")
+      npmCi(tester)
+      assert(runNode(tester, "module") == "3")
     }
   }
 }
