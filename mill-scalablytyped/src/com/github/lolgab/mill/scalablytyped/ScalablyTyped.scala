@@ -22,7 +22,7 @@ trait ScalablyTyped extends ScalaJSModule {
     * as it pins the exact versions installed in node_modules. When overriding
     * you need to override also `scalablyTypedBasePath` accordingly.
     */
-  def scalablyTypedPackageLock: T[PathRef] = Task.Source {
+  def scalablyTypedPackageLockJson: T[PathRef] = Task.Source {
     mill.api.BuildCtx.workspaceRoot / "package-lock.json"
   }
 
@@ -113,7 +113,7 @@ trait ScalablyTyped extends ScalaJSModule {
     }
 
     val basePath = scalablyTypedBasePath()
-    val packageLock = scalablyTypedPackageLock().path
+    val packageLock = scalablyTypedPackageLockJson().path
 
     if (scalablyTypedNpmCi()) {
       if (!os.exists(packageLock))
